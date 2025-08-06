@@ -1,0 +1,19 @@
+
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: symfony_app
+    volumes:
+      - .:/var/www/html
+      # You can add a separate volume for vendor if you want to speed up builds
+      # - ./vendor:/var/www/html/vendor
+    ports:
+      - "8000:8000"   # Map host 8000 to container 8000
+    env_file:
+      - .env
+    working_dir: /var/www/html
+    command: php -S 0.0.0.0:8000 -t public
+ 
